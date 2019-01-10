@@ -156,11 +156,7 @@ class KerasPolicy(Policy):
                                       self.validation_split))
                 # filter out kwargs that cannot be passed to fit
                 params = self._get_valid_params(self.model.fit, **kwargs)
-
-                self.model.fit(shuffled_X, shuffled_y,
-                               epochs=self.epochs,
-                               batch_size=self.batch_size,
-                               **params)
+                self.model.fit(shuffled_X, shuffled_y,**params)
                 # the default parameter for epochs in keras fit is 1
                 self.current_epoch = self.defaults.get("epochs", 1)
                 logger.info("Done fitting keras policy model")
